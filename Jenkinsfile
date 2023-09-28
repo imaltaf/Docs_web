@@ -1,15 +1,16 @@
 pipeline {
-    agent any
-    
+    agent {
+        label 'DevOps_server'
+    }
     stages {
         stage('Clone Repository') {
             steps {
                 script {
                     // Clean workspace before cloning (optional)
                     deleteDir()
-                    
-                    // Clone the Git repository
-                    git(url: 'https://github.com/imaltaf/Docs_web')
+
+                    // Clone the "main" branch of the Git repository
+                    git(url: 'https://github.com/imaltaf/Docs_web.git', branch: 'main')
                 }
             }
         }
@@ -22,21 +23,29 @@ pipeline {
                     
                     // Install required packages
                     sh 'sudo apt install -y ruby-full build-essential zlib1g-dev git'
+
+                    sh 'sudo gem install jekyll bundler'
                 }
             }
         }
-
         stage('Change Directory and Bundle Install') {
             steps {
                 script {
-                    // Change directory to the cloned repository
-                    dir('Docs_web') {
-                        // Run the bundle command
-                        sh 'bundle'
-                    }
-                }
+                // Change directory to the cloned repository
+                dir('Docs_web') {
+                    // Set up Ruby environment if necessary
+                    // ...
+                    
+                    // Install gems locally in the project directory
+                    sh 'sudo bundle install --path vendor/bundle'
             }
         }
+    }
+}
+
+
+
+
 
         
         stage('Stop Docker Compose') {
