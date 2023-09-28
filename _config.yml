@@ -20,7 +20,7 @@ timezone: Asia/Kolkata
 
 title: Altaf Docs # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the sub-title
+tagline: cybersec | DevOps | Linux | burpsuite | wireshark | python | Ansible | Terraform | Docker | Git | GitHub | Bash | AWS | Oracle cloud | Grafana | CD CI | founder of opensecAi | YouTuber # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -39,7 +39,7 @@ social:
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: ALTAF
   email: altaf@opensecai.com # change to your email address
-  links:
+  links: 
     # The first element serves as the copyright owner's link
     - https://twitter.com/Dark_Mechanic # change to your twitter homepage
     - https://github.com/imaltaf # change to your github homepage
@@ -76,7 +76,7 @@ theme_mode: # [light|dark]
 img_cdn: "https://chirpy-img.netlify.app"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/assets/img/favicons/man3.png"
+avatar: "/assets/img/favicons/android-chrome-192x192.png"
 
 # boolean type, the global switch for TOC in posts.
 toc: true

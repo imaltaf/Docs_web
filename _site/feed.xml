@@ -1,1 +1,64 @@
-<feed xmlns="http://www.w3.org/2005/Atom"> <id>https://blogs.imaltaf.online/</id><title>Altaf Docs</title><subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle> <updated>2023-09-26T22:53:50+05:30</updated> <author> <name>ALTAF</name> <uri>https://blogs.imaltaf.online/</uri> </author><link rel="self" type="application/atom+xml" href="https://blogs.imaltaf.online/feed.xml"/><link rel="alternate" type="text/html" hreflang="en" href="https://blogs.imaltaf.online/"/> <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator> <rights> © 2023 ALTAF </rights> <icon>/assets/img/favicons/favicon.ico</icon> <logo>/assets/img/favicons/favicon-96x96.png</logo> <entry><title>Install SonarQube in Docker</title><link href="https://blogs.imaltaf.online/posts/install-Sonar-Qube-in-Docker/" rel="alternate" type="text/html" title="Install SonarQube in Docker" /><published>2023-08-26T11:40:00+05:30</published> <updated>2023-08-26T11:40:00+05:30</updated> <id>https://blogs.imaltaf.online/posts/install-Sonar-Qube-in-Docker/</id> <content src="https://blogs.imaltaf.online/posts/install-Sonar-Qube-in-Docker/" /> <author> <name>ALTAF</name> </author> <category term="Blogging" /> <category term="Tutorial" /> <summary> How to set up SonarQube with a Docker Compose and DB To set up SonarQube with a Docker Compose configuration and an accompanying database, you can use the following example. This configuration uses SonarQube with a PostgreSQL database. Make sure you have Docker and Docker Compose installed on your system before proceeding. Create a file named docker-compose.yml and add the following content: ... </summary> </entry> </feed>
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://localhost:4000/</id>
+  <title>Altaf Docs</title>
+  <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
+  <updated>2023-09-27T23:05:12+05:30</updated>
+  <author>
+    <name>ALTAF</name>
+    <uri>http://localhost:4000/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="en"
+    href="http://localhost:4000/"/>
+  <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
+  <rights> © 2023 ALTAF </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Install SonarQube in Docker</title>
+    <link href="http://localhost:4000/posts/install-Sonar-Qube-in-Docker/" rel="alternate" type="text/html" title="Install SonarQube in Docker" />
+    <published>2023-08-26T11:40:00+05:30</published>
+  
+    <updated>2023-08-26T11:40:00+05:30</updated>
+  
+    <id>http://localhost:4000/posts/install-Sonar-Qube-in-Docker/</id>
+    <content src="http://localhost:4000/posts/install-Sonar-Qube-in-Docker/" />
+    <author>
+      <name>ALTAF</name>
+    </author>
+
+  
+    
+    <category term="Blogging" />
+    
+    <category term="Tutorial" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      How to set up SonarQube with a Docker Compose and DB
+
+To set up SonarQube with a Docker Compose configuration and an accompanying database, you can use the following example. This configuration uses SonarQube with a PostgreSQL database. Make sure you have Docker and Docker Compose installed on your system before proceeding.
+Create a file named docker-compose.yml and add the following content:
+
+...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+
