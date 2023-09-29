@@ -38,14 +38,16 @@ pipeline {
             steps {
                 script {
                     // Change directory to the cloned repository
-            dir('Docs_web') {
+                    dir('Docs_web') {
                     // Set up Ruby environment if necessary
-                    // ...
-                    
+
                     // Install gems locally in the project directory
                     sh 'sudo bundle install --path vendor/bundle'
+                    }
+                }
             }
-            stage('Stop Docker Compose') {
+        }
+        stage('Stop Docker Compose') {
             steps {
                 dir('Docs_web') {
                         // Set the JEKYLL_ENV variable and build the Jekyll site
