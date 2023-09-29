@@ -21,7 +21,7 @@ pipeline {
         stage('Update and Install') {
             steps {
                 script {
-                    sh 'sudo apt update && apt install -y ruby-full build-essential zlib1g-dev git'
+                    sh 'sudo apt update && sudo apt install -y ruby-full build-essential zlib1g-dev git'
                     sh 'sudo gem install jekyll bundler'
                 }
             }
@@ -40,9 +40,9 @@ pipeline {
         stage('Stop Docker Compose') {
             steps {
                 dir('Docs_web') {
-                    sh 'docker-compose down /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
-                    sh 'docker rm -f docs_web || true'
-                    sh 'docker rmi -f docs_web || true'
+                    sh 'sudo docker-compose down /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker rm -f docs_web || true'
+                    sh 'sudo docker rmi -f docs_web || true'
                 }
             }
         }
@@ -60,7 +60,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t docs_web -f /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker build -t docs_web -f /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
                 }
             }
         }
@@ -68,7 +68,7 @@ pipeline {
         stage('Start Docker Compose') {
             steps {
                 dir('Docs_web') {
-                    sh 'docker-compose up -d /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker-compose up -d /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
                 }
             }
         }
