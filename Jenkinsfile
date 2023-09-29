@@ -60,7 +60,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 script {
-                    sh 'sudo docker build -t docs_web -f /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker build -t docs_web . /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
                 }
             }
         }
