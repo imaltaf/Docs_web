@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Clean Workspace') {
             steps {
-                // Clean workspace before cloning
                 deleteDir()
             }
         }
@@ -14,79 +13,67 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    // Clone the "main" branch of the Git repository
                     git(url: 'https://github.com/imaltaf/Docs_web.git', branch: 'main')
                 }
             }
         }
-        
-        
+
         stage('Update and Install') {
             steps {
                 script {
-                    // Update the package list
-                    sh 'sudo apt update'
-                    
-                    // Install required packages
-                    sh 'sudo apt install -y ruby-full build-essential zlib1g-dev git'
-
-                    sh 'sudo gem install jekyll bundler'
+                    sh 'apt update && apt install -y ruby-full build-essential zlib1g-dev git'
+                    sh 'gem install jekyll bundler'
                 }
             }
         }
+
         stage('Change Directory and Bundle Install') {
             steps {
                 script {
-                    // Change directory to the cloned repository
                     dir('Docs_web') {
-                    // Set up Ruby environment if necessary
-
-                    // Install gems locally in the project directory
-                    sh 'sudo bundle install --path vendor/bundle'
+                        sh 'bundle install --path vendor/bundle'
                     }
                 }
             }
         }
+
         stage('Stop Docker Compose') {
             steps {
                 dir('Docs_web') {
-                        // Set the JEKYLL_ENV variable and build the Jekyll site
-                        sh 'sudo docker-compose down /home/ubuntu/workspace/Altaf_Docs'
-                        sh 'sudo docker rm -f docs_web || true'
-                        sh 'sudo docker rmi -f docs_web || true'
+                    sh 'docker-compose down /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'docker rm -f docs_web || true'
+                    sh 'docker rmi -f docs_web || true'
                 }
             }
         }
+
         stage('Build Jekyll Site') {
             steps {
                 script {
-                    // Change directory to the cloned repository
                     dir('Docs_web') {
-                        // Set the JEKYLL_ENV variable and build the Jekyll site
                         sh 'JEKYLL_ENV=production bundle exec jekyll b'
                     }
                 }
             }
         }
+
         stage('Create Docker Image') {
             steps {
                 script {
-                    // Build the Docker image using absolute paths
-                    sh 'docker build -t docs_web /home/ubuntu/workspace/Altaf_Docs'
+                    sh 'docker build -t docs_web -f /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
                 }
             }
         }
+
         stage('Start Docker Compose') {
             steps {
-                // Start the Docker Compose application
                 dir('Docs_web') {
-                        // Set the JEKYLL_ENV variable and build the Jekyll site hello
-                        sh 'sudo docker-compose up -d'
+                    sh 'docker-compose up -d /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
                 }
             }
         }
-            }
     }
+
     post {
         success {
             echo 'Pipeline succeeded! Add further actions here if needed.'
@@ -96,4 +83,4 @@ pipeline {
             echo 'Pipeline failed! Add further error handling here if needed.'
         }
     }
-
+}
