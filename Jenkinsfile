@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     // Change directory to the cloned repository
-                dir('Docs_web') {
+            dir('Docs_web') {
                     // Set up Ruby environment if necessary
                     // ...
                     
@@ -56,8 +56,10 @@ pipeline {
         
         stage('Stop Docker Compose') {
             steps {
-                // Stop the Docker Compose application
-                sh 'docker-compose down'
+                dir('Docs_web') {
+                        // Set the JEKYLL_ENV variable and build the Jekyll site
+                        sh 'sudo docker-compose down'
+                }
             }
         }
 
@@ -97,7 +99,10 @@ pipeline {
         stage('Start Docker Compose') {
             steps {
                 // Start the Docker Compose application
-                sh 'docker-compose up -d'
+                dir('Docs_web') {
+                        // Set the JEKYLL_ENV variable and build the Jekyll site
+                        sh 'sudo docker-compose up -d'
+                }
             }
         }
         
