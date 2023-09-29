@@ -40,7 +40,7 @@ pipeline {
         stage('Stop Docker Compose') {
             steps {
                 dir('Docs_web') {
-                    sh 'sudo docker-compose down /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker-compose down /home/ubuntu/workspace/Altaf_Docs/'
                     sh 'sudo docker rm -f docs_web || true'
                     sh 'sudo docker rmi -f docs_web || true'
                 }
@@ -60,7 +60,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 script {
-                    sh 'sudo docker build -t docs_web . /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker build -t docs_web . /home/ubuntu/workspace/Altaf_Docs/'
                 }
             }
         }
@@ -68,7 +68,7 @@ pipeline {
         stage('Start Docker Compose') {
             steps {
                 dir('Docs_web') {
-                    sh 'sudo docker-compose up -d /home/ubuntu/workspace/Altaf_Docs/Dockerfile'
+                    sh 'sudo docker-compose up -d /home/ubuntu/workspace/Altaf_Docs/'
                 }
             }
         }
