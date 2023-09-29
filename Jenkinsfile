@@ -78,7 +78,7 @@ pipeline {
             steps {
                 // Start the Docker Compose application
                 dir('Docs_web') {
-                        // Set the JEKYLL_ENV variable and build the Jekyll site
+                        // Set the JEKYLL_ENV variable and build the Jekyll site hello
                         sh 'sudo docker-compose up -d'
                 }
             }
