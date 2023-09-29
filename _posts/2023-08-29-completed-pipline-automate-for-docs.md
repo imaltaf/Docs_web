@@ -250,11 +250,15 @@ pipeline {
 }
 
 
-        
-        stage('Stop Docker Compose') {
+        stage('Build Jekyll Site') {
             steps {
-                // Stop the Docker Compose application
-                sh '/home/ubuntu/workspace/Altaf_Docs/docker-compose down'
+                script {
+                    // Change directory to the cloned repository
+                    dir('Docs_web') {
+                        // Build the Docker image using absolute paths
+                        sh '/home/ubuntu/workspace/Altaf_Docs/docker-compose down'
+                    }
+                }
             }
         }
 
@@ -281,22 +285,19 @@ pipeline {
                 }
             }
         }
-        stage('Create Docker Image') {
+
+        stage('Build Jekyll Site') {
             steps {
                 script {
-                    // Build the Docker image using absolute paths
-                    sh 'docker build -t docs_web /home/ubuntu/workspace/Altaf_Docs'
-        }
-    }
-}
-
-
-        stage('Start Docker Compose') {
-            steps {
-                // Start the Docker Compose application
-                sh '/home/ubuntu/workspace/Altaf_Docs/docker-compose up -d'
+                    // Change directory to the cloned repository
+                    dir('Docs_web') {
+                        // Build the Docker image using absolute paths
+                        sh 'docker build -t docs_web /home/ubuntu/workspace/Altaf_Docs'
+                    }
+                }
             }
         }
+        
         
         // Add more stages for your deployment process here
         // For example, you might have stages for testing and other tasks.
