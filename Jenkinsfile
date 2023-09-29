@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     sh 'apt update && apt install -y ruby-full build-essential zlib1g-dev git'
-                    sh 'gem install jekyll bundler'
+                    sh 'sudo gem install jekyll bundler'
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     dir('Docs_web') {
-                        sh 'bundle install --path vendor/bundle'
+                        sh 'sudo bundle install --path vendor/bundle'
                     }
                 }
             }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     dir('Docs_web') {
-                        sh 'JEKYLL_ENV=production bundle exec jekyll b'
+                        sh 'sudo JEKYLL_ENV=production bundle exec jekyll b'
                     }
                 }
             }
