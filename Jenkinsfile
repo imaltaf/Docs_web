@@ -2,18 +2,24 @@ pipeline {
     agent {
         label 'DevOps_server'
     }
+
     stages {
+        stage('Clean Workspace') {
+            steps {
+                // Clean workspace before cloning
+                deleteDir()
+            }
+        }
+
         stage('Clone Repository') {
             steps {
                 script {
-                    // Clean workspace before cloning (optional)
-                    deleteDir()
-
                     // Clone the "main" branch of the Git repository
                     git(url: 'https://github.com/imaltaf/Docs_web.git', branch: 'main')
                 }
             }
         }
+        
         
         stage('Update and Install') {
             steps {
