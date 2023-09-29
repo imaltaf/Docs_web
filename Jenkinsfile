@@ -21,7 +21,7 @@ pipeline {
         stage('Update and Install') {
             steps {
                 script {
-                    sh 'apt update && apt install -y ruby-full build-essential zlib1g-dev git'
+                    sh 'sudo apt update && apt install -y ruby-full build-essential zlib1g-dev git'
                     sh 'sudo gem install jekyll bundler'
                 }
             }
@@ -74,7 +74,7 @@ pipeline {
         }
     }
 
-    
+
     post {
         success {
             echo 'Pipeline succeeded! Add further actions here if needed.'
