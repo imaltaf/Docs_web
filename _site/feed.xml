@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Altaf Docs</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2023-09-27T23:05:12+05:30</updated>
+  <updated>2023-09-29T12:19:04+05:30</updated>
   <author>
     <name>ALTAF</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,47 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Completed Pipline Automate For Docs</title>
+    <link href="http://localhost:4000/posts/completed-pipline-automate-for-docs/" rel="alternate" type="text/html" title="Completed Pipline Automate For Docs" />
+    <published>2023-08-29T00:00:00+05:30</published>
+  
+    <updated>2023-08-29T00:00:00+05:30</updated>
+  
+    <id>http://localhost:4000/posts/completed-pipline-automate-for-docs/</id>
+    <content src="http://localhost:4000/posts/completed-pipline-automate-for-docs/" />
+    <author>
+      <name>ALTAF</name>
+    </author>
+
+  
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      DevSecOps Project Setup Guide
+
+Introduction
+
+In this comprehensive DevSecOps project setup guide, we’ll ensure the security of your software development and deployment pipeline by integrating a wide range of tools and services. Here are the tools we’ll be using:
+
+
+  Version Control: Git/GitHub
+  Continuous Integration and Continuous Deployment (CI/CD): Jenkins
+  Dynamic Application Security Tes...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
