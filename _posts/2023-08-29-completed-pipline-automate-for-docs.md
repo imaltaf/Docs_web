@@ -250,14 +250,11 @@ pipeline {
 }
 
 
-
-
-
         
         stage('Stop Docker Compose') {
             steps {
                 // Stop the Docker Compose application
-                sh 'docker-compose down'
+                sh '/home/ubuntu/workspace/Altaf_Docs/docker-compose down'
             }
         }
 
@@ -265,8 +262,8 @@ pipeline {
             steps {
                 script {
                     // Remove the Docker image (if exists)
-                    sh 'docker rm -f docs_web || true'
-                    sh 'docker rmi -f docs_web || true'
+                    sh 'sudo docker rm -f docs_web || true'
+                    sh 'sudo docker rmi -f docs_web || true'
                 }
             }
         }
@@ -279,7 +276,7 @@ pipeline {
                     // Change directory to the cloned repository
                     dir('Docs_web') {
                         // Set the JEKYLL_ENV variable and build the Jekyll site
-                        sh 'JEKYLL_ENV=production bundle exec jekyll b'
+                        sh 'sudo JEKYLL_ENV=production bundle exec jekyll b'
                     }
                 }
             }
@@ -297,7 +294,7 @@ pipeline {
         stage('Start Docker Compose') {
             steps {
                 // Start the Docker Compose application
-                sh 'docker-compose up -d'
+                sh '/home/ubuntu/workspace/Altaf_Docs/docker-compose up -d'
             }
         }
         
@@ -315,6 +312,7 @@ pipeline {
         }
     }
 }
+
 
 
 ```
