@@ -58,9 +58,9 @@ pipeline {
             steps {
                 dir('Docs_web') {
                         // Set the JEKYLL_ENV variable and build the Jekyll site
-                        sh 'sudo docker-compose down'
-                        sh 'docker rm -f docs_web || true'
-                        sh 'docker rmi -f docs_web || true'
+                        sh 'sudo docker-compose down /home/ubuntu/workspace/Altaf_Docs'
+                        sh 'sudo docker rm -f docs_web || true'
+                        sh 'sudo docker rmi -f docs_web || true'
                 }
             }
         }
