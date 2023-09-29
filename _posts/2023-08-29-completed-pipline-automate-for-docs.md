@@ -162,147 +162,73 @@ And save file
 ```bash
 sudo docker-compose up -d
 ```
-[ Full installation ]()
 
 
-3.2. Create a Jenkins pipeline to automate the build, test, and deployment processes.
+## pipline script
 
-![Alt text](/img/image.png)
-
-And press OK 
-
-## Create Node for other server
-
-![Alt text](/img/image-9.png)
-
-![Alt text](/img/image-1.png)
-
-![Alt text](/img/image-2.png)
-
-![Alt text](/img/image-3.png)
-
-fill all below 
-
-![Alt text](/img/image-4.png)
-
-# save
-
-Create New item
-
-![Alt text](/img/image-5.png)
-
-Enter Project name and select pipline and click ```OK```
-
-![Alt text](/img/image-6.png)
-
-## Enter project name and Add pipline script which given below and press ```save```
-
-![Alt text](/img/image-7.png)
-
-```jenkins
+```bash
 pipeline {
     agent {
         label 'DevOps_server'
     }
 
     stages {
-        
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
 
         stage('Clone Repository') {
             steps {
                 script {
-                    // Clone the "main" branch of the Git repository
                     git(url: 'https://github.com/imaltaf/Docs_web.git', branch: 'main')
                 }
             }
         }
 
-        // ... (other stages as before)
-
-        
-        
         stage('Update and Install') {
             steps {
                 script {
-                    // Update the package list
-                    sh 'sudo apt update'
-                    
-                    // Install required packages
-                    sh 'sudo apt install -y ruby-full build-essential zlib1g-dev git'
-
+                    sh 'sudo apt update && sudo apt install -y ruby-full build-essential zlib1g-dev git'
                     sh 'sudo gem install jekyll bundler'
                 }
             }
         }
+
         stage('Change Directory and Bundle Install') {
             steps {
-                script {
-                    // Change directory to the cloned repository
-                dir('Docs_web') {
-                    // Set up Ruby environment if necessary
-                    // ...
-                    
-                    // Install gems locally in the project directory
-                    sh 'sudo bundle install --path vendor/bundle'
+                sh 'sudo bundle install --path vendor/bundle'
+            }
+        }
+
+        stage('Stop Docker Compose') {
+            steps {
+                sh 'sudo docker-compose down'
+                sh 'sudo docker rm -f docs_web || true'
+                sh 'sudo docker rmi -f docs_web || true'
+            }
+        }
+
+        stage('Build Jekyll Site') {
+            steps {
+                sh 'sudo JEKYLL_ENV=production bundle exec jekyll b'
+            }
+        }
+
+        stage('Create Docker Image') {
+            steps {
+                sh 'sudo docker build -t docs_web .'
+            }
+        }
+
+        stage('Start Docker Compose') {
+            steps {
+                sh 'sudo docker-compose up -d'
             }
         }
     }
-}
 
-
-        stage('Build Jekyll Site') {
-            steps {
-                script {
-                    // Change directory to the cloned repository
-                    dir('Docs_web') {
-                        // Build the Docker image using absolute paths
-                        sh '/home/ubuntu/workspace/Altaf_Docs/docker-compose down'
-                    }
-                }
-            }
-        }
-
-        stage('Remove and Delete Docker Image') {
-            steps {
-                script {
-                    // Remove the Docker image (if exists)
-                    sh 'sudo docker rm -f docs_web || true'
-                    sh 'sudo docker rmi -f docs_web || true'
-                }
-            }
-        }
-
-        
-
-        stage('Build Jekyll Site') {
-            steps {
-                script {
-                    // Change directory to the cloned repository
-                    dir('Docs_web') {
-                        // Set the JEKYLL_ENV variable and build the Jekyll site
-                        sh 'sudo JEKYLL_ENV=production bundle exec jekyll b'
-                    }
-                }
-            }
-        }
-
-        stage('Build Jekyll Site') {
-            steps {
-                script {
-                    // Change directory to the cloned repository
-                    dir('Docs_web') {
-                        // Build the Docker image using absolute paths
-                        sh 'docker build -t docs_web /home/ubuntu/workspace/Altaf_Docs'
-                    }
-                }
-            }
-        }
-        
-        
-        // Add more stages for your deployment process here
-        // For example, you might have stages for testing and other tasks.
-    }
-    
     post {
         success {
             echo 'Pipeline succeeded! Add further actions here if needed.'
@@ -316,16 +242,5 @@ pipeline {
 
 
 
+
 ```
-
-Then go back and press ```Build Now```  and check the status
-
-![Alt text](/img/image-8.png)
-
-## Step 4: Code Quality and Static Analysis
-
-4.1. Use Jenkins plugins or integrations to enforce coding standards and code quality checks.
-
-4.2. Integrate SonarQube into your CI pipeline for advanced code analysis. Refer to the [SonarQube Documentation](https://docs.sonarqube.org/latest/) for setup instructions.
-
-
