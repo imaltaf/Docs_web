@@ -87,11 +87,6 @@ pipeline {
         }
             }
     }
-} 
-        // Add more stages for your deployment process here
-        // For example, you might have stages for testing and other tasks.
-    }
-    
     post {
         success {
             echo 'Pipeline succeeded! Add further actions here if needed.'
@@ -101,4 +96,4 @@ pipeline {
             echo 'Pipeline failed! Add further error handling here if needed.'
         }
     }
-}
+
