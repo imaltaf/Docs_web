@@ -29,53 +29,36 @@ pipeline {
 
         stage('Change Directory and Bundle Install') {
             steps {
-                script {
-                    dir('Docs_web') {
-                        sh 'sudo bundle install --path vendor/bundle'
-                    }
-                }
+                sh 'sudo bundle install --path vendor/bundle'
             }
         }
 
         stage('Stop Docker Compose') {
             steps {
-                dir('Docs_web') {
-                    sh 'sudo docker-compose down'
-                    sh 'sudo docker rm -f docs_web || true'
-                    sh 'sudo docker rmi -f docs_web || true'
-                }
+                sh 'sudo docker-compose down'
+                sh 'sudo docker rm -f docs_web || true'
+                sh 'sudo docker rmi -f docs_web || true'
             }
         }
 
         stage('Build Jekyll Site') {
             steps {
-                script {
-                    dir('Docs_web') {
-                        sh 'sudo JEKYLL_ENV=production bundle exec jekyll b'
-                    }
-                }
+                sh 'sudo JEKYLL_ENV=production bundle exec jekyll b'
             }
         }
 
         stage('Create Docker Image') {
             steps {
-                script {
-                    dir('Docs_web') {
-                    sh 'sudo docker build -t docs_web'
-                    }
-                }
+                sh 'sudo docker build -t docs_web'
             }
         }
 
         stage('Start Docker Compose') {
             steps {
-                dir('Docs_web') {
-                    sh 'sudo docker-compose up -d'
-                }
+                sh 'sudo docker-compose up -d'
             }
         }
     }
-
 
     post {
         success {
