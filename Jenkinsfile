@@ -49,7 +49,7 @@ pipeline {
 
         stage('Create Docker Image') {
             steps {
-                sh 'sudo docker build -t docs_web'
+                sh 'sudo docker build -t docs_web .'
             }
         }
 
