@@ -45,16 +45,7 @@ pipeline {
                     // Install gems locally in the project directory
                     sh 'sudo bundle install --path vendor/bundle'
             }
-        }
-    }
-}
-
-
-
-
-
-        
-        stage('Stop Docker Compose') {
+            stage('Stop Docker Compose') {
             steps {
                 dir('Docs_web') {
                         // Set the JEKYLL_ENV variable and build the Jekyll site
@@ -80,11 +71,9 @@ pipeline {
                 script {
                     // Build the Docker image using absolute paths
                     sh 'docker build -t docs_web /home/ubuntu/workspace/Altaf_Docs'
+                }
+            }
         }
-    }
-}
-
-
         stage('Start Docker Compose') {
             steps {
                 // Start the Docker Compose application
@@ -94,7 +83,9 @@ pipeline {
                 }
             }
         }
-        
+            }
+    }
+} 
         // Add more stages for your deployment process here
         // For example, you might have stages for testing and other tasks.
     }
