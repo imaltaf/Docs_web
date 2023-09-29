@@ -163,3 +163,51 @@ And save file
 sudo docker-compose up -d
 ```
 [ Full installation ]()
+
+
+3.2. Create a Jenkins pipeline to automate the build, test, and deployment processes.
+
+![Alt text](/img/image.png)
+
+And press OK 
+
+## Create Node for other server
+
+![Alt text](/img/image-9.png)
+
+![Alt text](/img/image-1.png)
+
+![Alt text](/img/image-2.png)
+
+![Alt text](/img/image-3.png)
+
+fill all below 
+
+![Alt text](/img/image-4.png)
+
+# save
+
+Create New item
+
+![Alt text](/img/image-5.png)
+
+Enter Project name and select pipline and click ```OK```
+
+![Alt text](/img/image-6.png)
+
+## Enter project name and Add pipline script which given below and press ```save```
+
+![Alt text](/img/image-7.png)
+
+
+Then go back and press ```Build Now```  and check the status
+
+![Alt text](/img/image-8.png)
+
+## Step 4: Code Quality and Static Analysis
+
+4.1. Use Jenkins plugins or integrations to enforce coding standards and code quality checks.
+
+4.2. Integrate SonarQube into your CI pipeline for advanced code analysis. Refer to the [SonarQube Documentation](https://docs.sonarqube.org/latest/) for setup instructions.
+
+
