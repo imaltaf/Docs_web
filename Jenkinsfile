@@ -33,6 +33,17 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                script{
+                    withSonarQubeEnv(credentialsId: 'sonar_devops_server-token') {
+                        sh "mvn clean package sonar:sonar"
+                        }
+                }
+                
+            }
+        }
+
         stage('Stop Docker Compose') {
             steps {
                 sh 'sudo docker-compose down'
@@ -58,6 +69,7 @@ pipeline {
                 sh 'sudo docker-compose up -d'
             }
         }
+
     }
 
     post {
