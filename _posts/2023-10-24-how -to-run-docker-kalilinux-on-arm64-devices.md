@@ -6,7 +6,7 @@ To use Docker Compose with a Kali Linux container, you can create a ```docker-co
 
 Create a ```docker-compose.yml``` file with the following contents:
 
-```yaml 
+```yml 
 version: '3'
 services:
   kali:
