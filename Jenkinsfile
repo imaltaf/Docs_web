@@ -23,6 +23,7 @@ pipeline {
                 script {
                     sh 'sudo apt update && sudo apt install -y ruby-full build-essential zlib1g-dev git'
                     sh 'sudo gem install jekyll bundler'
+                    sh 'sudo apt update && sudo apt install maven'
                 }
             }
         }
